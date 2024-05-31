@@ -3,8 +3,12 @@ export default (container) => {
     container.innerHTML = `<div>This is Home page</div>`;
   };
 
-  const tech = () => {
-    container.innerHTML = `<div>This is Tech page</div>`;
+  const tech = async () => {
+    const data = await fetch('/').then((res) => res.json());
+    console.log(data);
+    container.innerHTML = data
+      .map(({ title }) => `<div>${title}</div>`)
+      .join('');
   };
 
   const design = () => {

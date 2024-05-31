@@ -7,6 +7,11 @@ const pages = createPages(container);
 
 const router = createRouter();
 
+if (process.env.NODE_ENV === 'development') {
+  const { worker } = await import('./src/mocks/browser.js');
+  worker.start();
+}
+
 router
   .addRoute('/', pages.home)
   .addRoute('/tech', pages.tech)
